@@ -58,7 +58,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v0.9.1 sh -
 ```bash
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
-14. You know have a ready to use master node for kubernetes. Now lets join some worker nodes.
+14. You now have a ready to use master node for kubernetes. Now lets join some worker nodes.
 
 ## Worker Node Setup
 
@@ -117,7 +117,7 @@ curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetok
 # If you need a specific version run the following:
 curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken INSTALL_K3S_VERSION=v0.9.1 sh -
 ```
-12. You know have a ready to use worker node. Confirm its connected to the cluster by running the following command on the master node:
+12. You now have a ready to use worker node. Confirm its connected to the cluster by running the following command on the master node:
 ```bash
 sudo kubectl get nodes
 ```
