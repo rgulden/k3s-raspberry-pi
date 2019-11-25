@@ -1,6 +1,6 @@
 # k3s-setup-on-raspberry-pis
 
-Initial raspberry Pi setup using k3s.io
+Initial raspberry Pi setup using k3s.io -- Kubernetes cluster on raspberry pi 3s! 
 
 ## Master Node Setup
 
