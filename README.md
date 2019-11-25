@@ -4,7 +4,7 @@ Initial raspberry Pi setup using k3s.io -- Kubernetes cluster on raspberry pi 3s
 
 ## Master Node Setup
 
-1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named ".ssh" onto the SD card.
+1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named "ssh" onto the SD card after install.
 2.  SSH into the Pi (username: pi & password: raspberry) and type:
 ```bash
 sudo raspi-config
@@ -64,7 +64,7 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 
 Setting up the worker node is very similar to that of the Master node. So a lot of this will be copy and pasted.
 
-1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named ".ssh" onto the SD card.
+1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named "ssh" onto the SD card after install.
 2.  SSH into the Pi (username: pi & password: raspberry) and type:
 ```bash
 sudo raspi-config
