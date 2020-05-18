@@ -50,23 +50,23 @@ The Pis are now ready to run the cluster! :)
 
 ## Master Node Setup
 
-11. SSH back into the pi. Now the pi is ready to have k3s by rancher installed. We will do this by running the following command:
+1. SSH back into the masater pi. Now the pi is ready to have k3s by rancher installed. We will do this by running the following command:
 ```bash
 curl -sfL https://get.k3s.io | sh -
 
 # If you need a specific version run the following:
 curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v0.9.1 sh -
 ```
-12. After this command finished the following will have been installed: kubectl, crictl, ctr, k3s-killall.sh, and k3s-uninstall.sh
-13. Lets now grab the k3 key to allow worker nodes to join. Do this by running the following:
+2. After this command finished the following will have been installed: kubectl, crictl, ctr, k3s-killall.sh, and k3s-uninstall.sh
+3. Lets now grab the k3 key to allow worker nodes to join. Do this by running the following:
 ```bash
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
-14. You know have a ready to use master node for kubernetes. Now lets join some worker nodes.
+4. You know have a ready to use master node for kubernetes. Now lets join some worker nodes.
 
 ## Worker Node Setup
 
-11. SSH back into the pi. Now the pi is ready to have k3s by rancher installed. We will do this by running the following command:
+1. SSH back into each worker pi. Now the pi is ready to have k3s by rancher installed. We will do this by running the following command:
 ```bash
 # - - - - - 
 # In the command replace "myserver" with the IP address of the master node
@@ -77,7 +77,7 @@ curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetok
 # If you need a specific version run the following:
 curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken INSTALL_K3S_VERSION=v0.9.1 sh -
 ```
-12. You know have a ready to use worker node. Confirm its connected to the cluster by running the following command on the master node:
+2. You now have a ready to use worker node. Confirm its connected to the cluster by running the following command on the master node:
 ```bash
 sudo kubectl get nodes
 ```
@@ -156,4 +156,11 @@ sudo kubectl delete -f some_k8_item.yaml
 ```bash
 # Getting detailed information about pods
 sudo kubectl describe pods
+```
+
+## Setting up kubectl on your machine
+
+To get kubectl working on your local machine do the following:
+```bash
+export 
 ```
