@@ -2,14 +2,14 @@
 
 Initial raspberry Pi setup using k3s.io -- Kubernetes cluster on raspberry pi 3s! 
 
-## Master Node Setup
+## Prepare the Pis
 
 1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named ".ssh" onto the SD card.
 2.  SSH into the Pi (username: pi & password: raspberry) and type:
 ```bash
 sudo raspi-config
 ```
-3. Go to Network Options > Hostname then change the hostname k3s-master-1.
+3. Go to Network Options > Hostname then change the hostname k3s-worker_or_master-#.
 4. Set the GPU memory split to 16mb.
 5. Change the password for the pi user.
 6. Save settings and pi will reboot.
@@ -26,9 +26,9 @@ static domain_name_servers=x.x.x.1
 ```
 8. Disable swap by running the following:
 ```bash
-sudo dphys-swapfile swapoff && \
-sudo dphys-swapfile uninstall && \
-sudo update-rc.d dphys-swapfile remove
+sudo dphys-swapfile swapoff \
+&& sudo dphys-swapfile uninstall \
+&& sudo update-rc.d dphys-swapfile remove
 ```
 Confirm it worked by running:
 ```bash
@@ -46,6 +46,10 @@ cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
 ```bash
 sudo reboot
 ```
+The Pis are now ready to run the cluster! :) 
+
+## Master Node Setup
+
 11. SSH back into the pi. Now the pi is ready to have k3s by rancher installed. We will do this by running the following command:
 ```bash
 curl -sfL https://get.k3s.io | sh -
@@ -62,50 +66,6 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 
 ## Worker Node Setup
 
-Setting up the worker node is very similar to that of the Master node. So a lot of this will be copy and pasted.
-
-1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named ".ssh" onto the SD card.
-2.  SSH into the Pi (username: pi & password: raspberry) and type:
-```bash
-sudo raspi-config
-```
-3. Go to Network Options > Hostname then change the hostname k3s-worker-1. (Increment on each worker)
-4. Set the GPU memory split to 16mb.
-5. Change the password for the pi user.
-6. Save settings and pi will reboot.
-7. SSH back into the Pi and lets set the static IP by doing the following:
-```bash
-sudo nano /etc/dhcpcd.conf
-```
-Uncomment to eth0 block to look like the following and save when done:
-```bash
-interface eth0
-static ip_address=x.x.x.y/24
-static routers=x.x.x.1
-static domain_name_servers=x.x.x.1
-```
-8. Disable swap by running the following:
-```bash
-sudo dphys-swapfile swapoff && \
-sudo dphys-swapfile uninstall && \
-sudo update-rc.d dphys-swapfile remove
-```
-Confirm it worked by running:
-```bash
-sudo swapon --summary
-```
-9. Edit the /boot/cmdline.txt by doing:
-```bash
-sudo nano /boot/cmdline.txt
-```
-Then add this to the first line in the file (DO NOT CREATE A NEW LINE)
-```bash
-cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
-```
-10. Reboot the pi with the following:
-```bash
-sudo reboot
-```
 11. SSH back into the pi. Now the pi is ready to have k3s by rancher installed. We will do this by running the following command:
 ```bash
 # - - - - - 
