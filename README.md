@@ -171,3 +171,8 @@ scp pi@x.x.x.y:/etc/rancher/k3s/k3s.yaml ~/.kube/config
 ## Function As A Service on k3 cluster
 
 To run functions as a servie on your cluster visit https://docs.openfaas.com/deployment/kubernetes/#c-deploy-using-kubectl-and-plain-yaml-for-development-only
+
+
+## My Setup
+
+![RasPis](pis.JPG)
