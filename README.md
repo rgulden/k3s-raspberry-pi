@@ -4,7 +4,7 @@ Initial raspberry Pi setup using k3s.io -- Kubernetes cluster on raspberry pi 3s
 
 ## Master Node Setup
 
-1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named "ssh" onto the SD card after install.
+1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named ".ssh" onto the SD card.
 2.  SSH into the Pi (username: pi & password: raspberry) and type:
 ```bash
 sudo raspi-config
@@ -22,7 +22,7 @@ Uncomment to eth0 block to look like the following and save when done:
 interface eth0
 static ip_address=x.x.x.y/24
 static routers=x.x.x.1
-static domain_name_servers=8.8.8.8
+static domain_name_servers=x.x.x.1
 ```
 8. Disable swap by running the following:
 ```bash
@@ -58,13 +58,13 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v0.9.1 sh -
 ```bash
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
-14. You now have a ready to use master node for kubernetes. Now lets join some worker nodes.
+14. You know have a ready to use master node for kubernetes. Now lets join some worker nodes.
 
 ## Worker Node Setup
 
 Setting up the worker node is very similar to that of the Master node. So a lot of this will be copy and pasted.
 
-1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named "ssh" onto the SD card after install.
+1.  Install Raspbian Lite to the SD card with Etcher. Be sure to place a file named ".ssh" onto the SD card.
 2.  SSH into the Pi (username: pi & password: raspberry) and type:
 ```bash
 sudo raspi-config
@@ -82,7 +82,7 @@ Uncomment to eth0 block to look like the following and save when done:
 interface eth0
 static ip_address=x.x.x.y/24
 static routers=x.x.x.1
-static domain_name_servers=8.8.8.8
+static domain_name_servers=x.x.x.1
 ```
 8. Disable swap by running the following:
 ```bash
@@ -117,7 +117,7 @@ curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetok
 # If you need a specific version run the following:
 curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken INSTALL_K3S_VERSION=v0.9.1 sh -
 ```
-12. You now have a ready to use worker node. Confirm its connected to the cluster by running the following command on the master node:
+12. You know have a ready to use worker node. Confirm its connected to the cluster by running the following command on the master node:
 ```bash
 sudo kubectl get nodes
 ```
